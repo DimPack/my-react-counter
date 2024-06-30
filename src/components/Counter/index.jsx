@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import cx from 'classnames';
 import PropTypes from "prop-types";
+import styles from './Counter.module.scss'
 
 class Counter extends Component {
   constructor() {
@@ -12,7 +14,7 @@ class Counter extends Component {
   }
 
   componentDidMount() {
-    this.startAutoClick();
+    this.startAutoClick(); // для того щоб при тому як зарендериться компонет почати автоклік 
   }
 
   handlerChangeMode = () => {
@@ -63,23 +65,30 @@ class Counter extends Component {
 
   render() {
     const { count, isMode, autoClickInterval } = this.state;
+    const classNameBtn = cx(styles.btn)
     return (
-      <div>
-        <button onClick={this.handlerCount} disabled={isMode}>
-          -
-        </button>
-        <h2>{count}</h2>
-        <button onClick={this.handlerCount} disabled={!isMode}>
-          +
-        </button>
-        <button onClick={this.handlerChangeMode}>change mode</button>
-        <button onClick={this.startAutoClick} disabled={autoClickInterval !== null}>
-          start auto-click
-        </button>
-        <button onClick={this.stopAutoClick} disabled={autoClickInterval === null}>
-          stop auto-click
-        </button>
-        <button onClick={this.resetClick}>reset</button>
+      <div className={styles.mainBlockCount}>
+        <div>
+          <button  onClick={this.handlerCount} disabled={isMode}>
+            -
+          </button>
+          <h2>{count}</h2>
+          <button onClick={this.handlerCount} disabled={!isMode}>
+            +
+          </button>
+        </div>
+
+        <div className={styles.controlPanel}>
+          <button  className={classNameBtn} onClick={this.handlerChangeMode}>change mode</button>
+          <button className={classNameBtn} onClick={this.startAutoClick} disabled={autoClickInterval !== null}>
+            start auto-click
+          </button>
+          <button className={classNameBtn} onClick={this.stopAutoClick} disabled={autoClickInterval === null}>
+            stop auto-click
+          </button>
+          <button className={classNameBtn} onClick={this.resetClick}>reset</button>
+        </div>
+
       </div>
     );
   }
