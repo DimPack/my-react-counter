@@ -8,6 +8,7 @@ class CounterSection extends Component {
     super();
     this.state = {
       step: 1,
+      timeClick: 30,
     };
   }
 
@@ -17,18 +18,28 @@ class CounterSection extends Component {
     }
     this.setState({step: newStep})
   };
+
+  setTimeStep = (newTimeStep) => {
+    if (typeof newTimeStep !== 'number') {
+        throw new TypeError('value must be number');
+    }
+    this.setState({timeClick: newTimeStep})
+  };
+  resetValue = () => {
+    this.setState({step: 1, timeClick: 30})
+  }
   
   render() {
-    const { step } = this.state;
+    const { step, timeClick } = this.state;
     return (
       <section>
-        <Counter step={step} />
-        <CounterControl step={step} setStep={this.setStep}/>
+        <Counter step={step} timeClick={timeClick} resetValue={this.resetValue}/>
+        <CounterControl step={step} timeClick={timeClick} setStep={this.setStep} setTimeStep={this.setTimeStep}/>
       </section>
     );
   }
 }
 
-CounterSection.propTypes = {};
+// CounterSection.propTypes = {};
 
 export default CounterSection;

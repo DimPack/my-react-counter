@@ -7,7 +7,12 @@ class Counter extends Component {
     this.state = {
       count: 0,
       isMode: true,
+      autoClickInterval: null,
     };
+  }
+
+  componentDidMount() {
+    this.startAutoClick();
   }
 
   handlerChangeMode = () => {
@@ -23,10 +28,43 @@ class Counter extends Component {
     });
   };
 
+  startAutoClick = () => {
+    const { timeClick } = this.props;
+
+    const autoClickInterval = setInterval(() => {
+      this.setState((state, props) => {
+        const { count, isMode, timeClick } = state; // чому зі стейту берем
+        const newCount = isMode ? count + props.step : count - props.step;
+        const newTimeClick = timeClick - 1;
+        // console.log(timeClick);
+
+        if (newTimeClick < 0) {
+          clearInterval(this.state.autoClickInterval);
+          return { autoClickInterval: null };
+        }
+
+        return { count: newCount, timeClick: newTimeClick };
+      });
+    }, 1000);
+
+    this.setState( { autoClickInterval, timeClick });
+  };
+
+  stopAutoClick = () => {
+    clearInterval(this.state.autoClickInterval);
+    this.setState({ autoClickInterval: null, timeClick: this.props.timeClick });
+  };
+  resetClick = () => {
+    const { resetValue } = this.props;
+    this.stopAutoClick();
+    this.setState({count: 0, isMode: true })
+    resetValue();
+  }
+
   render() {
-    const { count, isMode } = this.state;
+    const { count, isMode, autoClickInterval } = this.state;
     return (
-      <article>
+      <div>
         <button onClick={this.handlerCount} disabled={isMode}>
           -
         </button>
@@ -35,11 +73,20 @@ class Counter extends Component {
           +
         </button>
         <button onClick={this.handlerChangeMode}>change mode</button>
-      </article>
+        <button onClick={this.startAutoClick} disabled={autoClickInterval !== null}>
+          start auto-click
+        </button>
+        <button onClick={this.stopAutoClick} disabled={autoClickInterval === null}>
+          stop auto-click
+        </button>
+        <button onClick={this.resetClick}>reset</button>
+      </div>
     );
   }
 }
 
-Counter.propTypes = {};
+// Counter.propTypes = {
+//   step: PropTypes.number.isRequired,
+// };
 
 export default Counter;
