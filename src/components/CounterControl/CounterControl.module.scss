@@ -1,3 +1,10 @@
+// .containerSettings {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     border: 1px solid black
+// }
 .containerCount {
     display: flex;
     flex-direction: column;
@@ -16,15 +23,20 @@
     border: 1px solid black;
 }
 
-.btn {
-    max-width: 200px;
-    min-width: 150px;
+h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
     width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    &:hover {
-        cursor: pointer;
-    }
+
+    
 }
 /*
 .inputSetting {
@@ -62,7 +74,7 @@
   .btnInputIncreaseDecrease {
     padding: 10px;
     border: none;
-    background-color: #149b2a;
+    background-color: #007bff;
     color: white;
     font-size: 1rem;
     cursor: pointer;
@@ -70,7 +82,7 @@
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: #0f6e1f;
+      background-color: #0056b3;
     }
 
     &:disabled {

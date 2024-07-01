@@ -1,34 +1,4 @@
-.containerCount {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.controlPanel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    max-width: 90%;
-    width: 100%;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
-}
-
-.btn {
-    max-width: 200px;
-    min-width: 150px;
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    &:hover {
-        cursor: pointer;
-    }
-}
-/*
 .inputSetting {
-        
     max-width: 60px;
     width: 100%;
     padding: 10px;
@@ -58,8 +28,7 @@
       -moz-appearance: textfield;
     }
   }
-
-  .btnInputIncreaseDecrease {
+.btnInputIncreaseDecrease {
     padding: 10px;
     border: none;
     background-color: #149b2a;
@@ -78,4 +47,3 @@
       cursor: not-allowed;
     }
   }
-    */

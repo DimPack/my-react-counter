@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import cx from 'classnames';
 import PropTypes from "prop-types";
-import styles from './Counter.module.scss'
+import styles from './Counter.module.scss';
+import '../../common/styles/_common.scss';
 
 class Counter extends Component {
   constructor() {
@@ -67,15 +68,21 @@ class Counter extends Component {
     const { count, isMode, autoClickInterval } = this.state;
     const classNameBtn = cx(styles.btn)
     return (
-      <div className={styles.mainBlockCount}>
+      <div className={styles.containerCount}>
         <div>
-          <button  onClick={this.handlerCount} disabled={isMode}>
-            -
-          </button>
-          <h2>{count}</h2>
-          <button onClick={this.handlerCount} disabled={!isMode}>
+          <button className="btnInputIncreaseDecrease" button onClick={this.handlerCount} disabled={!isMode}>
             +
           </button>
+            {/* <h2>{count}</h2> */}
+            <input className="inputSetting"
+              type="number"
+              name="count"
+              value={count}
+            />
+          <button className="btnInputIncreaseDecrease" onClick={this.handlerCount} disabled={isMode}>
+            -
+          </button>
+
         </div>
 
         <div className={styles.controlPanel}>

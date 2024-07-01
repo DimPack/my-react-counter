@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styles from './CounterControl.module.scss'
+import '../../common/styles/_common.scss';
 
 const CounterControl = (props) => {
-  const { step, setStep, timeClick, setTimeStep} = props;
+  const { step, timeClick, setValue} = props;
 
   const handlerStep = ({ target: { value } }) => {
     const newValue = Number(value);
 
     if (newValue >= 1 && newValue <= 1000000) {
-      setStep(newValue);
+      setValue(newValue, 'step');
     }
   };
 
@@ -16,29 +18,80 @@ const CounterControl = (props) => {
     const newValue = Number(value);
 
     if (newValue >= 1 && newValue <= 90) {
-      setTimeStep(newValue);
+      setValue(newValue, 'timeClick');
+    }
+  };
+
+
+  const increment = () => {
+    if (step < 1000000) {
+      setValue(step + 1, 'step');
+    }
+  };
+
+  const decrement = () => {
+    if (step > 1) {
+      setValue(step - 1, 'step');
+    }
+  };
+
+  // const incrementStep = () => {
+  //   if (step < 1000000) {
+  //     setStep(step + 1);
+  //   }
+  // };
+
+  // const decrementStep = () => {
+  //   if (step > 1) {
+  //     setStep(step - 1);
+  //   }
+  // };
+
+  const incrementTimeStep = () => {
+    if (timeClick < 90) {
+      setValue(timeClick + 1, 'timeClick');
+    }
+  };
+
+  const decrementTimeStep = () => {
+    if (timeClick > 1) {
+      setValue(timeClick - 1, 'timeClick');
     }
   };
 
   return (
-    <div>
-      <h3>step = {step}</h3>
-      <input
-        type="number"
-        name="stepInput"
-        value={step}
-        onChange={handlerStep}
-      />
+    <div className={styles.containerCount}>
+      <div className={styles.controlPanel}>
+        <h3>step = {step}</h3>
+        <div className={styles.inputContainer}>
+          <button className="btnInputIncreaseDecrease" onClick={increment} disabled={step >= 1000000}>+</button>
 
-      <h3>time interval = {timeClick}</h3>
-      <input
+          <input
+            className="inputSetting"
+            type="number"
+            name="stepInput"
+            value={step}
+            onChange={handlerStep}
+          />
 
-        type="number"
-        name="timeStep"
-        value={timeClick}
-        onChange={handlerTimeStep}
-      />
+          <button className="btnInputIncreaseDecrease" onClick={decrement} disabled={step <= 1}>-</button>
+        </div>
 
+
+        <h3>time interval = {timeClick} sec</h3>
+        <div className={styles.inputContainer}>
+
+          <button className="btnInputIncreaseDecrease" onClick={incrementTimeStep} disabled={timeClick >= 90}>+</button>
+            <input className="inputSetting"
+              type="number"
+              name="timeStep"
+              value={timeClick}
+              onChange={handlerTimeStep}
+            />
+          <button className="btnInputIncreaseDecrease" onClick={decrementTimeStep} disabled={timeClick <= 1}>-</button>
+          
+        </div>
+      </div>
     </div>
   );
 };
