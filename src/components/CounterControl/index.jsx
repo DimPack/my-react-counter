@@ -22,7 +22,6 @@ const CounterControl = (props) => {
     }
   };
 
-
   const increment = () => {
     if (step < 1000000) {
       setValue(step + 1, 'step');

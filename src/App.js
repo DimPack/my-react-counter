@@ -1,11 +1,10 @@
 import CounterSection from "./components/CounterSection";
-import './common/styles/_reset.scss';
-
+import "./common/styles/_reset.scss";
 
 function App() {
   return (
     <>
-    <CounterSection />
+      <CounterSection />
     </>
   );
 }
