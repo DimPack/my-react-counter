@@ -4,21 +4,21 @@ import styles from './CounterControl.module.scss'
 import '../../common/styles/_common.scss';
 
 const CounterControl = (props) => {
-  const { step, timeClick, setValue} = props;
+  const { step, timeClick, setValue } = props;
 
-  const handlerStep = ({ target: { value } }) => {
+  const handlerStep = ({ target: { value, name } }) => {
     const newValue = Number(value);
 
     if (newValue >= 1 && newValue <= 1000000) {
-      setValue(newValue, 'step');
+      setValue(newValue, name);
     }
   };
 
-  const handlerTimeStep = ({ target: { value } }) => {
+  const handlerTimeStep = ({ target: { value, name } }) => {
     const newValue = Number(value);
 
     if (newValue >= 1 && newValue <= 90) {
-      setValue(newValue, 'timeClick');
+      setValue(newValue, name);
     }
   };
 
@@ -68,7 +68,7 @@ const CounterControl = (props) => {
           <input
             className="inputSetting"
             type="number"
-            name="stepInput"
+            name="step"
             value={step}
             onChange={handlerStep}
           />
@@ -83,7 +83,7 @@ const CounterControl = (props) => {
           <button className="btnInputIncreaseDecrease" onClick={incrementTimeStep} disabled={timeClick >= 90}>+</button>
             <input className="inputSetting"
               type="number"
-              name="timeStep"
+              name="timeClick"
               value={timeClick}
               onChange={handlerTimeStep}
             />

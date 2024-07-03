@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Counter from "../Counter";
 import CounterControl from "../CounterControl";
 
@@ -31,18 +30,22 @@ class CounterSection extends Component {
     if (typeof newValue !== "number") {
       throw new TypeError("value must be number");
     }
-    if (type === "step") {
-      this.setState({ step: newValue });
-    } else if (type === "timeClick") {
-      this.setState({ timeClick: newValue });
-    } else {
-      throw new Error("Invalid type");
-    }
+    this.setState({
+      [type]: newValue,
+    })
+    // if (type === "step") {
+    //   this.setState({ step: newValue });
+    // } else if (type === "timeClick") {
+    //   this.setState({ timeClick: newValue });
+    // } else {
+    //   throw new Error("Invalid type");
+    // }
   };
 
   resetValue = () => {
     this.setState({ step: 1, timeClick: 30 });
   };
+
 
   render() {
     const { step, timeClick } = this.state;
@@ -52,6 +55,7 @@ class CounterSection extends Component {
           step={step}
           timeClick={timeClick}
           resetValue={this.resetValue}
+          setValue = {this.setValue}
         />
         <CounterControl
           step={step}
@@ -66,6 +70,6 @@ class CounterSection extends Component {
   }
 }
 
-// CounterSection.propTypes = {};
+
 
 export default CounterSection;

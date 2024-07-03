@@ -5,13 +5,14 @@ import styles from "./Counter.module.scss";
 import "../../common/styles/_common.scss";
 
 class Counter extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       count: 0,
       isMode: true,
-      autoClickInterval: null,
+      // autoClickInterval: null,
     };
+    this.autoClickInterval = null;
   }
 
   componentDidMount() {
@@ -32,30 +33,33 @@ class Counter extends Component {
   };
 
   startAutoClick = () => {
-    const { timeClick } = this.props;
+    if (this.autoClickInterval === null) {
+      this.autoClickInterval = setInterval(() => {
+        this.setState((state, props) => {
+          const { count, isMode } = state; // чому зі стейту берем
+          const { timeClick, setValue, step } = props;
+          const newCount = isMode ? count + step : count - step;
+          const newTimeClick = timeClick - 1;
 
-    const autoClickInterval = setInterval(() => {
-      this.setState((state, props) => {
-        const { count, isMode, timeClick } = state; // чому зі стейту берем
-        const newCount = isMode ? count + props.step : count - props.step;
-        const newTimeClick = timeClick - 1;
-        // console.log(timeClick);
-
-        if (newTimeClick < 0) {
-          clearInterval(this.state.autoClickInterval);
-          return { autoClickInterval: null };
-        }
-
-        return { count: newCount, timeClick: newTimeClick };
-      });
-    }, 1000);
-
-    this.setState({ autoClickInterval, timeClick });
+          if (newTimeClick < 0) {
+            clearInterval(this.autoClickInterval);
+            this.autoClickInterval = null;
+            return;
+          }
+          setValue(newTimeClick, "timeClick");
+          return { count: newCount };
+        });
+      }, 1000);
+    }
+    // this.setState({ autoClickInterval});
   };
 
   stopAutoClick = () => {
-    clearInterval(this.state.autoClickInterval);
-    this.setState({ autoClickInterval: null, timeClick: this.props.timeClick });
+    const { setValue } = this.props;
+    clearInterval(this.autoClickInterval);
+    this.autoClickInterval = null;
+    setValue(30, "timeClick");
+    // this.setState({ autoClickInterval: null, timeClick: this.props.timeClick });
   };
   resetClick = () => {
     const { resetValue } = this.props;
@@ -65,7 +69,7 @@ class Counter extends Component {
   };
 
   render() {
-    const { count, isMode, autoClickInterval } = this.state;
+    const { count, isMode } = this.state;
     const classNameBtn = cx(styles.btn);
     return (
       <div className={styles.containerCount}>
@@ -101,14 +105,14 @@ class Counter extends Component {
           <button
             className={classNameBtn}
             onClick={this.startAutoClick}
-            disabled={autoClickInterval !== null}
+            disabled={this.autoClickInterval !== null}
           >
             start auto-click
           </button>
           <button
             className={classNameBtn}
             onClick={this.stopAutoClick}
-            disabled={autoClickInterval === null}
+            disabled={this.autoClickInterval === null}
           >
             stop auto-click
           </button>
@@ -126,3 +130,6 @@ class Counter extends Component {
 // };
 
 export default Counter;
+
+//handlerTimeStep handlerStep - поєднати в одну функцію із замиканням
+//
