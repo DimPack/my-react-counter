@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import cx from "classnames";
 import PropTypes from "prop-types";
 import styles from "./Counter.module.scss";
-import "../../common/styles/_common.scss";
 
 class Counter extends Component {
   constructor(props) {
@@ -70,12 +68,12 @@ class Counter extends Component {
 
   render() {
     const { count, isMode } = this.state;
-    const classNameBtn = cx(styles.btn);
+
     return (
       <div className={styles.containerCount}>
         <div>
           <button
-            className="btnInputIncreaseDecrease"
+            className={styles.btnInputIncreaseDecrease}
             button
             onClick={this.handlerCount}
             disabled={!isMode}
@@ -84,13 +82,13 @@ class Counter extends Component {
           </button>
           {/* <h2>{count}</h2> */}
           <input
-            className="inputSetting"
+            className={styles.inputSetting}
             type="number"
             name="count"
             value={count}
           />
           <button
-            className="btnInputIncreaseDecrease"
+            className={styles.btnInputIncreaseDecrease}
             onClick={this.handlerCount}
             disabled={isMode}
           >
@@ -99,24 +97,28 @@ class Counter extends Component {
         </div>
 
         <div className={styles.controlPanel}>
-          <button className={classNameBtn} onClick={this.handlerChangeMode}>
+          <label className={styles.boxTitle}>Mode management</label>
+          <button
+            className={styles.btnChangeMode}
+            onClick={this.handlerChangeMode}
+          >
             change mode
           </button>
           <button
-            className={classNameBtn}
+            className={styles.btnAutoClick}
             onClick={this.startAutoClick}
             disabled={this.autoClickInterval !== null}
           >
             start auto-click
           </button>
           <button
-            className={classNameBtn}
+            className={styles.btnAutoClick}
             onClick={this.stopAutoClick}
             disabled={this.autoClickInterval === null}
           >
             stop auto-click
           </button>
-          <button className={classNameBtn} onClick={this.resetClick}>
+          <button className={styles.btnReset} onClick={this.resetClick}>
             reset
           </button>
         </div>

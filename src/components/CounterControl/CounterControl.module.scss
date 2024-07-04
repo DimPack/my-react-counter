@@ -1,10 +1,6 @@
-// .containerSettings {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     border: 1px solid black
-// }
+@import '../../common/styles/_templase.scss';
+@import '../../common/styles/colors.scss';
+
 .containerCount {
     display: flex;
     flex-direction: column;
@@ -12,15 +8,11 @@
 }
 
 .controlPanel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    max-width: 90%;
-    width: 100%;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
+  @include controlPanel();
+}
+
+.boxTitle {
+  @include boxTitle();
 }
 
 h3 {
@@ -38,6 +30,13 @@ h3 {
 
     
 }
+.inputSetting {
+  @include input-styles();
+}
+.btnInputIncreaseDecrease {
+  @include button-styles($colorBtnPlusMinusSeting, $colorBtnPlusMinusSetingHover, $colorBtnText, $btnDisabled);
+}
+
 /*
 .inputSetting {
         

@@ -1,0 +1,94 @@
+@mixin button-styles($background, $backgroundHover, $colorBtnText, $btnDisabled) {
+    width: 40px;
+    padding: 10px;
+    border: none;
+    background-color: $background;
+    color: $colorBtnText;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: $backgroundHover;
+    }
+
+    &:disabled {
+        background-color: $btnDisabled;
+        cursor: not-allowed;
+    }
+}
+
+@mixin input-styles() {
+    max-width: 60px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin: 0 10px;
+    text-align: center;
+    appearance: textfield;
+
+    &::placeholder {
+      color: #aaa;
+    }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    & {
+      -moz-appearance: textfield;
+    }
+}
+
+@mixin btnModeControl($background, $backgroundHover){
+    max-width: 200px;
+    min-width: 150px;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: $background;
+    text-transform: uppercase;
+    border: 1px solid #000;
+    font-weight: 600;
+    color: rgb(204, 204, 204);
+    transition: all linear .5s;
+    &:hover {
+        background-color: $backgroundHover;
+        cursor: pointer;
+    }
+    &:disabled {
+        color: rgb(112, 112, 112);
+        background-color: $btnDisabled;
+        cursor: not-allowed;
+    }
+}
+@mixin controlPanel(){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 90%;
+    width: 100%;
+    position: relative;
+    text-transform: uppercase;
+    font-style: italic;
+    color: rgb(129, 129, 129);
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgb(129, 129, 129);
+    border-radius: 10px;
+}
+
+@mixin boxTitle() {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: white;
+    padding: 0 5px;
+    font-weight: bold;
+    display: inline-block;
+}

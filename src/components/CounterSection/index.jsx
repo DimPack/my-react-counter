@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Counter from "../Counter";
 import CounterControl from "../CounterControl";
+import styles from "./CounterSection.module.scss";
 
 
 class CounterSection extends Component {
@@ -50,7 +51,8 @@ class CounterSection extends Component {
   render() {
     const { step, timeClick } = this.state;
     return (
-      <section>
+      
+      <section className={styles.containerMain}>
         <Counter
           step={step}
           timeClick={timeClick}

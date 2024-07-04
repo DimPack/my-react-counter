@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from './CounterControl.module.scss'
-import '../../common/styles/_common.scss';
 
 const CounterControl = (props) => {
   const { step, timeClick, setValue } = props;
@@ -61,33 +60,34 @@ const CounterControl = (props) => {
   return (
     <div className={styles.containerCount}>
       <div className={styles.controlPanel}>
+      <label className={styles.boxTitle}>setting variables</label>
         <h3>step = {step}</h3>
         <div className={styles.inputContainer}>
-          <button className="btnInputIncreaseDecrease" onClick={increment} disabled={step >= 1000000}>+</button>
+          <button className={styles.btnInputIncreaseDecrease} onClick={increment} disabled={step >= 1000000}>+</button>
 
           <input
-            className="inputSetting"
+            className={styles.inputSetting}
             type="number"
             name="step"
             value={step}
             onChange={handlerStep}
           />
 
-          <button className="btnInputIncreaseDecrease" onClick={decrement} disabled={step <= 1}>-</button>
+          <button className={styles.btnInputIncreaseDecrease} onClick={decrement} disabled={step <= 1}>-</button>
         </div>
 
 
         <h3>time interval = {timeClick} sec</h3>
         <div className={styles.inputContainer}>
 
-          <button className="btnInputIncreaseDecrease" onClick={incrementTimeStep} disabled={timeClick >= 90}>+</button>
-            <input className="inputSetting"
+          <button className={styles.btnInputIncreaseDecrease} onClick={incrementTimeStep} disabled={timeClick >= 90}>+</button>
+            <input className={styles.inputSetting}
               type="number"
               name="timeClick"
               value={timeClick}
               onChange={handlerTimeStep}
             />
-          <button className="btnInputIncreaseDecrease" onClick={decrementTimeStep} disabled={timeClick <= 1}>-</button>
+          <button className={styles.btnInputIncreaseDecrease} onClick={decrementTimeStep} disabled={timeClick <= 1}>-</button>
           
         </div>
       </div>

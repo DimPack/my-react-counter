@@ -1,81 +1,36 @@
+@import "../../common/styles/_templase.scss";
+@import "../../common/styles/colors.scss";
+
 .containerCount {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .controlPanel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    max-width: 90%;
-    width: 100%;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
+  @include controlPanel();
+}
+.boxTitle {
+  @include boxTitle();
 }
 
-.btn {
-    max-width: 200px;
-    min-width: 150px;
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    &:hover {
-        cursor: pointer;
-    }
+.btnChangeMode {
+  @include btnModeControl($btnChangeMode, $btnChangeModeHover);
 }
-/*
+.btnAutoClick {
+  @include btnModeControl($btnAutoClick, $btnAutoClickHover);
+}
+.btnReset {
+  @include btnModeControl($btnReset, $btnResetHover);
+}
 .inputSetting {
-        
-    max-width: 60px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    margin: 0 10px;
-    text-align: center;
-    appearance: textfield;
-
-    &:focus {
-      outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    }
-
-    &::placeholder {
-      color: #aaa;
-    }
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    & {
-      -moz-appearance: textfield;
-    }
-  }
-
-  .btnInputIncreaseDecrease {
-    padding: 10px;
-    border: none;
-    background-color: #149b2a;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background-color: #0f6e1f;
-    }
-
-    &:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-  }
-    */
+  @include input-styles();
+}
+.btnInputIncreaseDecrease {
+  @include button-styles(
+    $colorBtnPlusMinusCount,
+    $colorBtnPlusMinusCountHover,
+    $colorBtnText,
+    $btnDisabled
+  );
+}
