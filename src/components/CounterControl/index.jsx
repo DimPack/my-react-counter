@@ -5,18 +5,49 @@ import styles from './CounterControl.module.scss'
 const CounterControl = (props) => {
   const { step, timeClick, setValue } = props;
 
-  const handlerStep = ({ target: { value, name } }) => {
+  // const handlerStep = ({ target: { value, name } }) => {
+  //   const newValue = Number(value);
+
+  //   if (newValue >= 1 && newValue <= 1000000) {
+  //     setValue(newValue, name);
+  //   }
+  // };
+
+  // const handlerTimeStep = ({ target: { value, name } }) => {
+  //   const newValue = Number(value);
+
+  //   if (newValue >= 1 && newValue <= 90) {
+  //     setValue(newValue, name);
+  //   }
+  // };
+
+  // const handlerStepAndTimeStep = ({ target: { value, name } }) =>{
+  //   const newValue = Number(value);
+
+  //   if (name === 'step') {
+  //     if (newValue >= 1 && newValue <= 1000000) {
+  //       setValue(newValue, name);
+  //     }
+  //   }
+
+  //   if (name === 'timeClick') {
+  //     if (newValue >= 1 && newValue <= 90) {
+  //       setValue(newValue, name);
+  //     }
+  //   }
+  // }
+
+  const handlerChange = ({ target: { value, name } }) => {
     const newValue = Number(value);
 
-    if (newValue >= 1 && newValue <= 1000000) {
-      setValue(newValue, name);
-    }
-  };
-
-  const handlerTimeStep = ({ target: { value, name } }) => {
-    const newValue = Number(value);
-
-    if (newValue >= 1 && newValue <= 90) {
+    const ranges = {
+      step: { min: 1, max: 1000000 },
+      timeClick: { min: 1, max: 90 }
+    };
+  
+    const range = ranges[name];
+  
+    if (newValue >= range.min && newValue <= range.max) {
       setValue(newValue, name);
     }
   };
@@ -47,13 +78,15 @@ const CounterControl = (props) => {
 
   const incrementTimeStep = () => {
     if (timeClick < 90) {
-      setValue(timeClick + 1, 'timeClick');
+      const valuetimeClick = timeClick + 1;
+      setValue(valuetimeClick, 'timeClick');
     }
   };
 
   const decrementTimeStep = () => {
     if (timeClick > 1) {
-      setValue(timeClick - 1, 'timeClick');
+      const valuetimeClick = timeClick - 1;
+      setValue(valuetimeClick, 'timeClick');
     }
   };
 
@@ -70,7 +103,7 @@ const CounterControl = (props) => {
             type="number"
             name="step"
             value={step}
-            onChange={handlerStep}
+            onChange={handlerChange}
           />
 
           <button className={styles.btnInputIncreaseDecrease} onClick={decrement} disabled={step <= 1}>-</button>
@@ -85,7 +118,7 @@ const CounterControl = (props) => {
               type="number"
               name="timeClick"
               value={timeClick}
-              onChange={handlerTimeStep}
+              onChange={handlerChange}
             />
           <button className={styles.btnInputIncreaseDecrease} onClick={decrementTimeStep} disabled={timeClick <= 1}>-</button>
           

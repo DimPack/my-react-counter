@@ -62,7 +62,6 @@ class CounterSection extends Component {
         <CounterControl
           step={step}
           timeClick={timeClick}
-
           setValue = {this.setValue}
           // setStep={this.setStep}
           // setTimeStep={this.setTimeStep}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import AutoClick from "../AutoClick/AutoClick";
 import styles from "./Counter.module.scss";
 
 class Counter extends Component {
@@ -34,7 +35,7 @@ class Counter extends Component {
     if (this.autoClickInterval === null) {
       this.autoClickInterval = setInterval(() => {
         this.setState((state, props) => {
-          const { count, isMode } = state; // чому зі стейту берем
+          const { count, isMode } = state;
           const { timeClick, setValue, step } = props;
           const newCount = isMode ? count + step : count - step;
           const newTimeClick = timeClick - 1;
@@ -42,7 +43,8 @@ class Counter extends Component {
           if (newTimeClick < 0) {
             clearInterval(this.autoClickInterval);
             this.autoClickInterval = null;
-            return;
+            this.stopAutoClick();
+            return ;
           }
           setValue(newTimeClick, "timeClick");
           return { count: newCount };
@@ -53,11 +55,11 @@ class Counter extends Component {
   };
 
   stopAutoClick = () => {
-    const { setValue } = this.props;
+    const { timeClick } = this.props;
     clearInterval(this.autoClickInterval);
     this.autoClickInterval = null;
-    setValue(30, "timeClick");
-    // this.setState({ autoClickInterval: null, timeClick: this.props.timeClick });
+    // setValue(30, "timeClick");
+    this.setState({ autoClickInterval: null, timeClick: timeClick });
   };
   resetClick = () => {
     const { resetValue } = this.props;
@@ -104,20 +106,11 @@ class Counter extends Component {
           >
             change mode
           </button>
-          <button
-            className={styles.btnAutoClick}
-            onClick={this.startAutoClick}
-            disabled={this.autoClickInterval !== null}
-          >
-            start auto-click
-          </button>
-          <button
-            className={styles.btnAutoClick}
-            onClick={this.stopAutoClick}
-            disabled={this.autoClickInterval === null}
-          >
-            stop auto-click
-          </button>
+          <AutoClick
+            startAutoClick={this.startAutoClick}
+            stopAutoClick={this.stopAutoClick}
+            autoClickInterval={this.autoClickInterval}
+          />
           <button className={styles.btnReset} onClick={this.resetClick}>
             reset
           </button>

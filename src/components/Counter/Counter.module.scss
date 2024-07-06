@@ -17,9 +17,7 @@
 .btnChangeMode {
   @include btnModeControl($btnChangeMode, $btnChangeModeHover);
 }
-.btnAutoClick {
-  @include btnModeControl($btnAutoClick, $btnAutoClickHover);
-}
+
 .btnReset {
   @include btnModeControl($btnReset, $btnResetHover);
 }

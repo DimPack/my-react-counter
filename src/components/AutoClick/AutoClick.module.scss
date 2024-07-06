@@ -1,0 +1,6 @@
+@import "../../common/styles/_templase.scss";
+@import "../../common/styles/colors.scss";
+
+.btnAutoClick {
+    @include btnModeControl($btnAutoClick, $btnAutoClickHover);
+  }
