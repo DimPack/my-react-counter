@@ -4,39 +4,6 @@ import styles from './CounterControl.module.scss'
 
 const CounterControl = (props) => {
   const { step, timeClick, setValue } = props;
-
-  // const handlerStep = ({ target: { value, name } }) => {
-  //   const newValue = Number(value);
-
-  //   if (newValue >= 1 && newValue <= 1000000) {
-  //     setValue(newValue, name);
-  //   }
-  // };
-
-  // const handlerTimeStep = ({ target: { value, name } }) => {
-  //   const newValue = Number(value);
-
-  //   if (newValue >= 1 && newValue <= 90) {
-  //     setValue(newValue, name);
-  //   }
-  // };
-
-  // const handlerStepAndTimeStep = ({ target: { value, name } }) =>{
-  //   const newValue = Number(value);
-
-  //   if (name === 'step') {
-  //     if (newValue >= 1 && newValue <= 1000000) {
-  //       setValue(newValue, name);
-  //     }
-  //   }
-
-  //   if (name === 'timeClick') {
-  //     if (newValue >= 1 && newValue <= 90) {
-  //       setValue(newValue, name);
-  //     }
-  //   }
-  // }
-
   const handlerChange = ({ target: { value, name } }) => {
     const newValue = Number(value);
 
@@ -63,18 +30,6 @@ const CounterControl = (props) => {
       setValue(step - 1, 'step');
     }
   };
-
-  // const incrementStep = () => {
-  //   if (step < 1000000) {
-  //     setStep(step + 1);
-  //   }
-  // };
-
-  // const decrementStep = () => {
-  //   if (step > 1) {
-  //     setStep(step - 1);
-  //   }
-  // };
 
   const incrementTimeStep = () => {
     if (timeClick < 90) {
@@ -128,6 +83,11 @@ const CounterControl = (props) => {
   );
 };
 
-// CounterControl.propTypes = {};
+CounterControl.propTypes = {
+  step: PropTypes.number.isRequired,
+  timeClick: PropTypes.number.isRequired,
+  resetValue: PropTypes.func,
+  setValue: PropTypes.func.isRequired,
+}
 
 export default CounterControl;

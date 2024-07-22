@@ -12,21 +12,6 @@ class CounterSection extends Component {
       timeClick: 30,
     };
   }
-
-  // setStep = (newStep) => {
-  //   if (typeof newStep !== "number") {
-  //     throw new TypeError("value must be number");
-  //   }
-  //   this.setState({ step: newStep });
-  // };
-
-  // setTimeStep = (newTimeStep) => {
-  //   if (typeof newTimeStep !== "number") {
-  //     throw new TypeError("value must be number");
-  //   }
-  //   this.setState({ timeClick: newTimeStep });
-  // };
-
   setValue = (newValue, type) => {
     if (typeof newValue !== "number") {
       throw new TypeError("value must be number");
@@ -34,13 +19,6 @@ class CounterSection extends Component {
     this.setState({
       [type]: newValue,
     })
-    // if (type === "step") {
-    //   this.setState({ step: newValue });
-    // } else if (type === "timeClick") {
-    //   this.setState({ timeClick: newValue });
-    // } else {
-    //   throw new Error("Invalid type");
-    // }
   };
 
   resetValue = () => {

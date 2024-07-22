@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./AutoClick.module.scss";
+
 const AutoClick = (props) => {
   const { startAutoClick, stopAutoClick, autoClickInterval } = props;
   return (
@@ -21,5 +23,14 @@ const AutoClick = (props) => {
     </>
   );
 };
+
+AutoClick.propTypes = {
+  startAutoClick: PropTypes.func.isRequired,
+  stopAutoClick: PropTypes.func.isRequired,
+  autoClickInterval: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.oneOf([null])
+  ])
+}
 
 export default AutoClick;

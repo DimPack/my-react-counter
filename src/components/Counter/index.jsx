@@ -9,13 +9,12 @@ class Counter extends Component {
     this.state = {
       count: 0,
       isMode: true,
-      // autoClickInterval: null,
     };
     this.autoClickInterval = null;
   }
 
   componentDidMount() {
-    this.startAutoClick(); // для того щоб при тому як зарендериться компонет почати автоклік
+    this.startAutoClick();
   }
 
   handlerChangeMode = () => {
@@ -51,10 +50,8 @@ class Counter extends Component {
         });
       }, 1000);
     }
-    // this.setState({ autoClickInterval});
   };
 
-  // handlerAutoClick = () =>
   stopAutoClick = (click = false) => {
     const { timeClick, setValue } = this.props;
     clearInterval(this.autoClickInterval);
@@ -63,8 +60,7 @@ class Counter extends Component {
     if (click) {
       setValue(timeClick, "timeClick");
     }
- 
-    // this.setState({ autoClickInterval: null});
+
   };
   resetClick = () => {
     const { resetValue } = this.props;
@@ -86,7 +82,6 @@ class Counter extends Component {
           >
             +
           </button>
-          {/* <h2>{count}</h2> */}    
           <span className={styles.inputSetting} >{count}</span>
           <button
             className={styles.btnInputIncreaseDecrease}
@@ -119,11 +114,11 @@ class Counter extends Component {
   }
 }
 
-// Counter.propTypes = {
-//   step: PropTypes.number.isRequired,
-// };
+Counter.propTypes = {
+  step: PropTypes.number.isRequired,
+  timeClick: PropTypes.number.isRequired,
+  resetValue: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired,
+};
 
 export default Counter;
-
-//handlerTimeStep handlerStep - поєднати в одну функцію із замиканням
-//
