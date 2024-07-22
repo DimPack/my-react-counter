@@ -43,7 +43,7 @@ class Counter extends Component {
             clearInterval(this.autoClickInterval);
             this.autoClickInterval = null;
             this.stopAutoClick();
-            return ;
+            return;
           }
           setValue(newTimeClick, "timeClick");
           return { count: newCount };
@@ -60,7 +60,6 @@ class Counter extends Component {
     if (click) {
       setValue(timeClick, "timeClick");
     }
-
   };
   resetClick = () => {
     const { resetValue } = this.props;
@@ -78,15 +77,15 @@ class Counter extends Component {
           <button
             className={styles.btnInputIncreaseDecrease}
             onClick={this.handlerCount}
-            disabled={(isMode?false:true)}
+            disabled={isMode ? false : true}
           >
             +
           </button>
-          <span className={styles.inputSetting} >{count}</span>
+          <span className={styles.inputSetting}>{count}</span>
           <button
             className={styles.btnInputIncreaseDecrease}
             onClick={this.handlerCount}
-            disabled={(isMode?true:false)}
+            disabled={isMode ? true : false}
           >
             -
           </button>

@@ -1,10 +1,10 @@
-@import '../../common/styles/_templase.scss';
-@import '../../common/styles/colors.scss';
+@use "../../common/styles/colors" as *;
+@use "../../common/styles/templase" as *;
 
 .containerCount {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .controlPanel {
@@ -16,25 +16,28 @@
 }
 
 h3 {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
 
-  .inputContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 15px;
-    width: 100%;
-
-    
+.inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  width: 100%;
 }
 .inputSetting {
   @include input-styles();
 }
 .btnInputIncreaseDecrease {
-  @include button-styles($colorBtnPlusMinusSeting, $colorBtnPlusMinusSetingHover, $colorBtnText, $btnDisabled);
+  @include button-styles(
+    $colorBtnPlusMinusSeting,
+    $colorBtnPlusMinusSetingHover,
+    $colorBtnText,
+    $btnDisabled
+  );
 }
 
 /*

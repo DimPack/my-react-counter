@@ -3,7 +3,6 @@ import Counter from "../Counter";
 import CounterControl from "../CounterControl";
 import styles from "./CounterSection.module.scss";
 
-
 class CounterSection extends Component {
   constructor() {
     super();
@@ -18,37 +17,31 @@ class CounterSection extends Component {
     }
     this.setState({
       [type]: newValue,
-    })
+    });
   };
 
   resetValue = () => {
     this.setState({ step: 1, timeClick: 30 });
   };
 
-
   render() {
     const { step, timeClick } = this.state;
     return (
-      
       <section className={styles.containerMain}>
         <Counter
           step={step}
           timeClick={timeClick}
           resetValue={this.resetValue}
-          setValue = {this.setValue}
+          setValue={this.setValue}
         />
         <CounterControl
           step={step}
           timeClick={timeClick}
-          setValue = {this.setValue}
-          // setStep={this.setStep}
-          // setTimeStep={this.setTimeStep}
+          setValue={this.setValue}
         />
       </section>
     );
   }
 }
-
-
 
 export default CounterSection;

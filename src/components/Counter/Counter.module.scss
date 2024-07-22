@@ -1,5 +1,5 @@
-@import "../../common/styles/_templase.scss";
-@import "../../common/styles/colors.scss";
+@use "../../common/styles/colors" as *;
+@use "../../common/styles/templase" as *;
 
 .container {
   display: flex;

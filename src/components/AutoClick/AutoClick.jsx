@@ -29,8 +29,8 @@ AutoClick.propTypes = {
   stopAutoClick: PropTypes.func.isRequired,
   autoClickInterval: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.oneOf([null])
-  ])
-}
+    PropTypes.oneOf([null]),
+  ]),
+};
 
 export default AutoClick;

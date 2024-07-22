@@ -1,6 +1,6 @@
-@use "../../common/styles/templase";
-@use "../../common/styles/colors";
+@use "../../common/styles/colors" as *;
+@use "../../common/styles/templase" as *;
 
 .btnAutoClick {
-    @include btnModeControl($btnAutoClick, $btnAutoClickHover);
-  }
+  @include btnModeControl($btnAutoClick, $btnAutoClickHover);
+}
